@@ -4,15 +4,13 @@ Complexidade Ciclomática:
 
 M=E−N+2 P
 Cálculo :
-M=8−6+2×1=4
-complexidade ciclomática é 4 .
+M=7−6+2×1=3
+complexidade ciclomática é 3 .
 
 Caminhos básicos:
 
-Caminho 1 : 1 → 2 (Conexão bem-sucedida) → 3 → 4 (Executa a consulta) → 5 → 5b (Consulta não retorna resultado) → 6 (Retorna false).
+Caminho 1: Início -> Conexão -> Construção SQL -> Execução SQL -> Verificação (falso) -> Retorno.
 
-Caminho 2 : 1 → 2 (Conexão bem-sucedida) → 3 → 4 (Executa a consulta) → 5 → 5a (Consulta retorna resultado) → 6 (Retorna true).
+Caminho 2: Início -> Conexão -> Construção SQL -> Execução SQL -> Verificação (verdadeiro) -> Atribuição de result -> Retorno.
 
-Caminho 3 : 1 → 2 (Falha ao conectar ao banco de dados, executa o bloco catch) → 6 (Retorna false).
-
-Caminho 4 : 1 → 2 → 3 (Conexão bem-sucedida, mas uma falha na execução do SQL leva ao bloco catch) → 6 (Retorna false).
+Caminho 3: Início -> Conexão (falha) -> Retorno.
