@@ -1,16 +1,17 @@
-![Grafo de Fluxo](https://github.com/user-attachments/assets/e2a1a1e4-9345-424a-91f5-0748d80156cc)
+![Grafo de Fluxo](https://github.com/user-attachments/assets/00247d2c-621d-4f41-ae5a-a14b20c0eabe)
 
 Complexidade Ciclomática:
 
 M=E−N+2 P
 Cálculo :
-M=7−6+2×1=3
-complexidade ciclomática é 3 .
+M = 6 - 6 + 2 × 1
+M = 2
+complexidade ciclomática é 2 .
 
 Caminhos básicos:
 
-Caminho 1: Início -> Conexão -> Construção SQL -> Execução SQL -> Verificação (falso) -> Retorno.
+Caminho 1:
+Início → conectarBD() → Construção SQL → Executar consulta → Decisão rs.next()(true) → Retorno resultado.
 
-Caminho 2: Início -> Conexão -> Construção SQL -> Execução SQL -> Verificação (verdadeiro) -> Atribuição de result -> Retorno.
-
-Caminho 3: Início -> Conexão (falha) -> Retorno.
+Caminho 2:
+Início → conectarBD() → Construção SQL → Executar consulta → Decisão rs.next()(false) → Retorno resultado.
