@@ -1,50 +1,39 @@
-package login;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class User {
-    
-    // Ponto 1: Início
-    public Connection conectarBD() { // Ponto 2: conectarBD()
-        Connection conn = null; 
+
+   1 public Connection conectarBD() {
+      2  Connection conn = null;
         try {
-            Class.forName("com.mysql.DriverManager").newInstance();
-            String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
-            conn = DriverManager.getConnection(url);
+          3  Class.forName("com.mysql.Driver.Manager").newInstance();
+          4  String url = "jdbc:mysql://127.0.0.1/test?user=lopes&password=123";
+          5  conn = DriverManager.getConnection(url);
         } catch (Exception e) {
-            // Exceção tratada de forma genérica
+            // Tratar exceção se necessário
         }
-        return conn; // Retorno da conexão
+      6  return conn;
     }
 
-    public boolean verificarUsuario(String login, String senha) {
-        // Ponto 3: Construção de string SQL
-        String sql = ""; 
-        Connection conn = conectarBD(); 
-        sql += "select nome from usuarios "; 
-        sql += "where login = '" + login + "' "; 
-        sql += "and senha = '" + senha + "';"; 
-        
+   7 public String nome = "";
+   8 public boolean result = false;
+
+  9  public boolean verificarUsuario(String login, String senha) {
+      10  String sql = "";
+      11  Connection conn = conectarBD();
+
+        // Instrução SQL
+      12  sql += "SELECT nome FROM usuarios ";
+      13  sql += "WHERE login = '" + login + "'";
+      14  sql += " AND senha = '" + senha + "';";
+
         try {
-            Statement st = conn.createStatement();
-            // Ponto 4: Executar consulta SQL
-            ResultSet rs = st.executeQuery(sql); 
-            
-            // Ponto 5: Decisão: if (rs.next())
-            if (rs.next()) {
-                result = true;
-                nome = rs.getString("nome");
-            } else {
-                result = false;
+         15   Statement st = conn.createStatement();
+         16   ResultSet rs = st.executeQuery(sql);
+           17 if (rs.next()) {
+             18   result = true;
+             19   nome = rs.getString("nome");
             }
         } catch (Exception e) {
-            // Tratamento de exceção genérico
+            // Tratar exceção se necessário
         }
-        
-        // Ponto 6: Retorno de result
-        return result;
-    }
+       20 return result;
+   21 }
 }
